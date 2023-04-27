@@ -1,5 +1,6 @@
 import styles from "../styles/Account.module.css";
 import { useEffect } from 'react'
+import Link from "next/link";
 
 const Account = () => {
 
@@ -22,6 +23,8 @@ const Account = () => {
                 <input name="password" type="text" placeholder="Password" className={styles.input} />
                 <input type="submit" value="Login" className={styles.button} />
             </form>
+
+            <p> Don't have a account? <Link href="/register"> Create one </Link> </p>
 
         </div>
     )

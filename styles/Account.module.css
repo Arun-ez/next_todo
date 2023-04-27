@@ -1,9 +1,19 @@
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
     margin-top: 80px;
+}
+
+.form small {
+    color: #e8603a;
 }
 
 .input {
@@ -37,4 +47,72 @@
     opacity: 90%;
     letter-spacing: 3px;
     transform: scale(1.05);
+}
+
+.account a {
+    color: #6e71cc;
+}
+
+/* .toast {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    animation: toast_anim 1s;
+    position: absolute;
+}
+
+@keyframes toast_anim {
+    0% {
+        padding: 20px;
+    }
+
+    100% {
+        padding: 50px;
+    }
+} */
+
+.remove_toast {
+    display: none;
+}
+
+.slideTop {
+    -webkit-animation: slide-in-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    background-color: black;
+    position: absolute;
+    z-index: 10000;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+@-webkit-keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+        letter-spacing: 5px;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+        letter-spacing: 0px;
+    }
 }
