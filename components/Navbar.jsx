@@ -48,7 +48,7 @@ const Navbar = () => {
             </div>
 
             <div className={styles.account}>
-                <button> <Link href="/account"> Login or Signup </Link> </button>
+                <Link href="/account"> <button> Login or Signup </button> </Link>
             </div>
 
 

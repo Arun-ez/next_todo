@@ -13,6 +13,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="favicon.ico" />
       </Head>
       <Navbar />
+      <div style={{ height: "80px" }}> </div>
       <Component {...pageProps} />
     </>
   )
