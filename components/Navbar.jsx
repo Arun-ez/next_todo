@@ -1,16 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { FaUser } from 'react-icons/fa'
+import { LOGIN } from '@/redux/auth/types'
 
 const Navbar = () => {
 
+    const dispatch = useDispatch();
     const router = useRouter();
+    const AuthState = useSelector((store) => {
+        return store;
+    })
 
     const navlist = [
         { name: "All Tasks", path: "/" },
         { name: "Create", path: "/create" }
     ]
+
+    const token_login_handler = async () => {
+        try {
+            let response = await fetch('/api/auth/token', {
+                method: "POST",
+                headers: { authorization: `Bearer ${localStorage.getItem('nexttodo_token')}` }
+            })
+
+            let json = await response.json();
+
+            dispatch({ type: LOGIN, payload: json.success })
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('nexttodo_token')) {
+            token_login_handler()
+        }
+    }, [])
 
     return (
         <div className={`${styles.navbar}`}>
@@ -48,7 +77,22 @@ const Navbar = () => {
             </div>
 
             <div className={styles.account}>
-                <Link href="/account"> <button> Login or Signup </button> </Link>
+
+                {AuthState.name ?
+                    <>
+                        <FaUser />
+                        &nbsp;
+                        <Link href="/account"> {AuthState.name} </Link>
+                    </>
+                    :
+
+                    <>
+                        <Link href="/account"> <button> Login or Signup </button> </Link>
+                    </>
+
+                }
+
+
             </div>
 
 

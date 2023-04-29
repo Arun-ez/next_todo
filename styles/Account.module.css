@@ -4,16 +4,16 @@
     align-items: center;
 }
 
+.account h2 {
+    margin-top: 150px;
+}
+
 .form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
     margin-top: 80px;
-}
-
-.form small {
-    color: #e8603a;
 }
 
 .input {
@@ -52,25 +52,6 @@
 .account a {
     color: #6e71cc;
 }
-
-/* .toast {
-    background-color: black;
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
-    animation: toast_anim 1s;
-    position: absolute;
-}
-
-@keyframes toast_anim {
-    0% {
-        padding: 20px;
-    }
-
-    100% {
-        padding: 50px;
-    }
-} */
 
 .remove_toast {
     display: none;
