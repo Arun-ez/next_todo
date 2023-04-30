@@ -36,31 +36,51 @@ const postTask = async (data, payload) => {
     }
 }
 
-const getTaskById = (data, id) => {
+const getTaskById = (tasks, id) => {
 
-    let result = data.find((elm) => {
+    let result = tasks.find((elm) => {
         return elm.id === id
     })
 
     return { data: result }
 }
 
-const patchTaskById = (data, id, payload) => {
+const patchTaskById = async (data, tasks, id, payload) => {
 
-    let result = data.find((elm) => {
-        return elm.id === id
+    let updated = {}
+
+    let result = tasks.map((elm, idx) => {
+
+        if (elm.id !== id) {
+            return elm;
+        }
+
+        updated = { ...elm, ...payload };
+
+        return updated;
     })
 
-    return { data: result }
+    try {
+        let response = await task_data_handler(data, result);
+        return { success: updated }
+    } catch (error) {
+        throw new Error(error);
+    }
+
 }
 
-const deleteTaskById = (data, id) => {
+const deleteTaskById = async (data, tasks, id) => {
 
-    let result = data.find((elm) => {
-        return elm.id === id
+    let result = tasks.filter((elm) => {
+        return elm.id !== id;
     })
 
-    return { data: result }
+    try {
+        let response = await task_data_handler(data, result);
+        return { success: id }
+    } catch (error) {
+        throw new Error(error);
+    }
 }
 
 export { getAllTasks, postTask, getTaskById, patchTaskById, deleteTaskById }

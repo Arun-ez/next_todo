@@ -38,3 +38,19 @@
     letter-spacing: 3px;
     transform: scale(1.05);
 }
+
+.status {
+    text-align: center;
+    transition: all 1s;
+    opacity: 0;
+}
+
+.success {
+    color: green;
+    opacity: 1;
+}
+
+.failed {
+    color: red;
+    opacity: 1;
+}

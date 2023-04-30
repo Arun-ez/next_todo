@@ -3,9 +3,4 @@ import { AuthReducer } from "./auth/reducer";
 
 const store = legacy_createStore(AuthReducer);
 
-store.subscribe(() => {
-    console.log(store.getState())
-})
-
-
 export { store }

@@ -11,9 +11,6 @@ const Verify = (token) => {
             error: error.message
         }
     }
-
-
-
 }
 
 const TokenValidator = (req) => {

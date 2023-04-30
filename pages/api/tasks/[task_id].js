@@ -1,4 +1,5 @@
 import { TokenValidator } from "@/middlewares/TokenValidator";
+import CreateConnection from "@/middlewares/ConnectionCreator";
 import { getAllTasks, getTaskById, patchTaskById, deleteTaskById } from "@/controllers/task.controller";
 
 const get = async (req, res) => {
@@ -29,14 +30,14 @@ const patch = async (req, res) => {
 
     try {
         let tasks = await getAllTasks(isValid.success);
-        let response = patchTaskById(tasks.data, task_id, req.body);
+        let response = await patchTaskById(isValid.success, tasks.data, task_id, JSON.parse(req.body));
         res.send(response);
     } catch (error) {
         res.status(400).send({ failed: error.message })
     }
 }
 
-const remove = async (req, res) => {
+const erase = async (req, res) => {
     const { task_id } = req.query;
     let isValid = TokenValidator(req);
 
@@ -46,7 +47,7 @@ const remove = async (req, res) => {
 
     try {
         let tasks = await getAllTasks(isValid.success);
-        let response = deleteTaskById(tasks.data, task_id);
+        let response = deleteTaskById(isValid.success, tasks.data, task_id);
         res.send(response);
     } catch (error) {
         res.status(400).send({ failed: error.message })
@@ -54,15 +55,16 @@ const remove = async (req, res) => {
 }
 
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
     const { method } = req;
+    await CreateConnection()
 
     if (method === 'GET') {
         get(req, res);
     } else if (method === 'PATCH') {
         patch(req, res);
     } else if (method === 'DELETE') {
-        remove(req, res);
+        erase(req, res);
     } else {
         res.status(400).send({ failed: `${req.method} is not supported in this route` })
     }

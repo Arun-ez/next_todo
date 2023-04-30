@@ -1,9 +1,55 @@
 import styles from '../styles/Home.module.css'
 import { useEffect, useState } from 'react'
+import { TodoItem } from '@/components/TodoItem';
 
-const Home = ({ data }) => {
+const Home = () => {
 
-  let [tasks, setTasks] = useState(data);
+  let [tasks, setTasks] = useState([]);
+
+  const load = async () => {
+    try {
+      let response = await fetch('/api/tasks', {
+        method: "GET",
+        headers: { authorization: `Bearer ${localStorage.getItem('nexttodo_token')}` }
+      })
+
+      let json = await response.json();
+      setTasks(json.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const toggle_status = async ({ id, status }) => {
+    try {
+      let response = await fetch(`/api/tasks/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: !status }),
+        headers: { authorization: `Bearer ${localStorage.getItem('nexttodo_token')}` }
+      })
+      load();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const remove_todo = async ({ id }) => {
+    try {
+      let response = await fetch(`/api/tasks/${id}`, {
+        method: "DELETE",
+        headers: { authorization: `Bearer ${localStorage.getItem('nexttodo_token')}` }
+      })
+      load();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('nexttodo_token')) {
+      load()
+    }
+  }, [])
 
   return (
     <>
@@ -12,13 +58,8 @@ const Home = ({ data }) => {
         <p> See all your tasks  </p>
 
         <div className={styles.container}>
-          {tasks.map(({ title, description, status }, id) => {
-            return (
-              <div key={id}>
-                <h2> {title} </h2>
-                <p> {description} </p>
-              </div>
-            )
+          {tasks.map((elm, id) => {
+            return <TodoItem data={elm} toggle_status={toggle_status} remove_todo={remove_todo} key={id} />
           })}
         </div>
       </main>
@@ -26,16 +67,4 @@ const Home = ({ data }) => {
   )
 }
 
-const getServerSideProps = async (context) => {
-
-  let data = [
-    { title: "React", description: "Revise useState, useEffect, learn useMemo", status: false }
-  ]
-
-  return {
-    props: { data } // will be passed to the page component as props
-  }
-}
-
-export { getServerSideProps }
 export default Home;
