@@ -92,7 +92,7 @@ const Account = () => {
                         <input type="submit" value="Login" className={styles.button} />
                     </form>
 
-                    <p> Don't have a account? <Link href="/register"> Create one </Link> </p>
+                    <p> {"Don't have a account?"} <Link href="/register"> Create one </Link> </p>
 
                 </>
             }

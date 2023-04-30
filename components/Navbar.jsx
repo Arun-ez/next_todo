@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import styles from '../styles/Navbar.module.css'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,10 +48,10 @@ const Navbar = () => {
             <div className={styles.logo}>
 
                 <Link href="/">
-                    <img
-                        src="https://cdn1.iconfinder.com/data/icons/line-awesome-vol-4/32/infinity-solid-256.png"
-                        width="50px"
-                        height="50px"
+                    <Image
+                        src="/logo.png"
+                        width={50}
+                        height={50}
                         alt="logo"
                     />
                 </Link>
@@ -91,7 +92,6 @@ const Navbar = () => {
                     </>
 
                 }
-
 
             </div>
 
