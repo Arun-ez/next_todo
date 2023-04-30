@@ -45,22 +45,45 @@ const Navbar = () => {
     return (
         <div className={`${styles.navbar}`}>
 
-            <div className={styles.logo}>
+            <div>
+                <div className={styles.logo}>
 
-                <Link href="/">
-                    <Image
-                        src="/logo.png"
-                        width={50}
-                        height={50}
-                        alt="logo"
-                    />
-                </Link>
+                    <Link href="/">
+                        <Image
+                            src="/logo.png"
+                            width={50}
+                            height={50}
+                            alt="logo"
+                        />
+                    </Link>
 
-                <Link href="/">
-                    <h2> NextTodo </h2>
-                </Link>
+                    <Link href="/">
+                        <h2> NextTodo </h2>
+                    </Link>
+
+                </div>
+
+                <div className={styles.account} id={styles.account_small_screen}>
+
+                    {AuthState.name ?
+                        <>
+                            <FaUser />
+                            &nbsp;
+                            <Link href="/account"> {AuthState.name} </Link>
+                        </>
+                        :
+
+                        <>
+                            <Link href="/account"> <button> Login or Signup </button> </Link>
+                        </>
+
+                    }
+
+                </div>
 
             </div>
+
+
 
             <div className={styles.navlist}>
                 {
@@ -77,7 +100,7 @@ const Navbar = () => {
                 }
             </div>
 
-            <div className={styles.account}>
+            <div className={styles.account} id={styles.account_large_screen}>
 
                 {AuthState.name ?
                     <>

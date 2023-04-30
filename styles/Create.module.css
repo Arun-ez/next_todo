@@ -54,3 +54,21 @@
     color: red;
     opacity: 1;
 }
+
+@media all and (min-width:0px) and (max-width:700px) {
+
+    .create>h1 {
+        font-size: 1.5em;
+    }
+
+    .input {
+        width: 80%;
+    }
+
+    .button {
+        width: 80%;
+        font-size: medium;
+    }
+
+
+}

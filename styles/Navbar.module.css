@@ -27,6 +27,10 @@
 
 .logo {
     gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .logo h2 {
@@ -73,7 +77,16 @@
     color: #6e71cc !important;
 }
 
-@media all and (max-width:900px) {
+#account_small_screen {
+    display: none;
+}
+
+#account_large_screen {
+    display: flex;
+}
+
+
+@media all and (min-width:600px) and (max-width:900px) {
 
     .navbar {
         font-size: 15px;
@@ -85,5 +98,54 @@
 
     .account button {
         font-size: 14px;
+    }
+
+    .logo img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+@media all and (min-width:0px) and (max-width:600px) {
+    .navbar {
+        font-size: 12px;
+        flex-direction: column;
+    }
+
+    .navlist {
+        gap: 40px;
+    }
+
+    .account button {
+        font-size: 15px;
+    }
+
+    .logo img {
+        height: 30px;
+        width: 30px;
+    }
+
+    .logo h2 {
+        font-size: 20px;
+    }
+
+    .active {
+        padding: 12px 20px 12px 20px;
+        background-color: black;
+        color: white;
+    }
+
+    #account_small_screen {
+        display: flex;
+    }
+
+    .account {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #account_large_screen {
+        display: none;
     }
 }

@@ -1,10 +1,18 @@
 import styles from '../styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import { TodoItem } from '@/components/TodoItem';
+import { useRouter } from 'next/router';
+import { NoAuth } from '@/components/NoAuth';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
 
+  const router = useRouter();
   let [tasks, setTasks] = useState([]);
+
+  let token = useSelector((store) => {
+    return store.token;
+  })
 
   const load = async () => {
     try {
@@ -25,6 +33,19 @@ const Home = () => {
       let response = await fetch(`/api/tasks/${id}`, {
         method: "PATCH",
         body: JSON.stringify({ status: !status }),
+        headers: { authorization: `Bearer ${localStorage.getItem('nexttodo_token')}` }
+      })
+      load();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const edit_todo = async (data, id) => {
+    try {
+      let response = await fetch(`/api/tasks/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
         headers: { authorization: `Bearer ${localStorage.getItem('nexttodo_token')}` }
       })
       load();
@@ -54,14 +75,49 @@ const Home = () => {
   return (
     <>
       <main className={styles.home}>
-        <h1> Welcome to NextTodo </h1>
-        <p> See all your tasks  </p>
 
-        <div className={styles.container}>
-          {tasks.map((elm, id) => {
-            return <TodoItem data={elm} toggle_status={toggle_status} remove_todo={remove_todo} key={id} />
-          })}
-        </div>
+        {token ?
+
+          <>
+
+            {tasks.length ?
+
+              <>
+                <h1> Welcome to NextTodo </h1>
+                <p> See all your tasks  </p>
+
+                <div className={styles.container}>
+                  {tasks.map((elm, id) => {
+                    return <TodoItem data={elm} toggle_status={toggle_status} edit_todo={edit_todo} remove_todo={remove_todo} key={id} />
+                  })}
+                </div>
+
+              </>
+
+              :
+
+              <>
+                <h2> You have not created any task </h2>
+                <input
+                  type="button"
+                  className={styles.button}
+                  value="Create new one"
+                  onClick={() => { router.push({ pathname: "/create" }) }}
+                />
+              </>
+
+            }
+
+          </>
+
+          :
+
+          <>
+            <NoAuth />
+          </>
+
+        }
+
       </main>
     </>
   )
