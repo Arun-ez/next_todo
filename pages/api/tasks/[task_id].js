@@ -1,17 +1,56 @@
+import { TokenValidator } from "@/middlewares/TokenValidator";
+import { getAllTasks, getTaskById, patchTaskById, deleteTaskById } from "@/controllers/task.controller";
 
-const get = (req, res) => {
+const get = async (req, res) => {
     const { task_id } = req.query;
-    res.send({ id: task_id, method: 'GET' });
+
+    let isValid = TokenValidator(req);
+
+    if (isValid.hasOwnProperty('failed')) {
+        return res.status(401).send(isValid);
+    }
+
+    try {
+        let tasks = await getAllTasks(isValid.success);
+        let response = getTaskById(tasks.data, task_id);
+        res.send(response);
+    } catch (error) {
+        res.status(400).send({ failed: error.message })
+    }
 }
 
-const patch = (req, res) => {
+const patch = async (req, res) => {
     const { task_id } = req.query;
-    res.send({ id: task_id, method: 'PATCH' });
+    let isValid = TokenValidator(req);
+
+    if (isValid.hasOwnProperty('failed')) {
+        return res.status(401).send(isValid);
+    }
+
+    try {
+        let tasks = await getAllTasks(isValid.success);
+        let response = patchTaskById(tasks.data, task_id, req.body);
+        res.send(response);
+    } catch (error) {
+        res.status(400).send({ failed: error.message })
+    }
 }
 
-const remove = (req, res) => {
+const remove = async (req, res) => {
     const { task_id } = req.query;
-    res.send({ id: task_id, method: 'DELETE' });
+    let isValid = TokenValidator(req);
+
+    if (isValid.hasOwnProperty('failed')) {
+        return res.status(401).send(isValid);
+    }
+
+    try {
+        let tasks = await getAllTasks(isValid.success);
+        let response = deleteTaskById(tasks.data, task_id);
+        res.send(response);
+    } catch (error) {
+        res.status(400).send({ failed: error.message })
+    }
 }
 
 
@@ -24,6 +63,8 @@ const handler = (req, res) => {
         patch(req, res);
     } else if (method === 'DELETE') {
         remove(req, res);
+    } else {
+        res.status(400).send({ failed: `${req.method} is not supported in this route` })
     }
 }
 
