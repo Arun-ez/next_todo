@@ -1,7 +1,7 @@
 
 # NextTodo
 
-![Logo](http://localhost:3000/_next/image?url=%2Flogo.png&w=64&q=75)
+![Logo](https://getnexttodo.vercel.app/_next/image?url=%2Flogo.png&w=64&q=75)
 
 A next.js powered Todo list website , where users able to list all the day to day tasks, with a nice interface.
 
