@@ -9,13 +9,10 @@
     color: black;
     background-color: rgb(255, 255, 255, 40%);
     display: flex;
-    height: 80px;
     font-size: 18px;
     font-weight: 500;
     white-space: nowrap;
     backdrop-filter: blur(10px);
-
-
 }
 
 .navbar>div {
@@ -39,6 +36,8 @@
 
 .navlist {
     gap: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .link {

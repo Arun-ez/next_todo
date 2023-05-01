@@ -79,35 +79,14 @@ const Home = () => {
         {token ?
 
           <>
+            <h1> Welcome to NextTodo </h1>
+            <p> See all your tasks  </p>
 
-            {tasks.length ?
-
-              <>
-                <h1> Welcome to NextTodo </h1>
-                <p> See all your tasks  </p>
-
-                <div className={styles.container}>
-                  {tasks.map((elm, id) => {
-                    return <TodoItem data={elm} toggle_status={toggle_status} edit_todo={edit_todo} remove_todo={remove_todo} key={id} />
-                  })}
-                </div>
-
-              </>
-
-              :
-
-              <>
-                <h2> You have not created any task </h2>
-                <input
-                  type="button"
-                  className={styles.button}
-                  value="Create new one"
-                  onClick={() => { router.push({ pathname: "/create" }) }}
-                />
-              </>
-
-            }
-
+            <div className={styles.container}>
+              {tasks.map((elm, id) => {
+                return <TodoItem data={elm} toggle_status={toggle_status} edit_todo={edit_todo} remove_todo={remove_todo} key={id} />
+              })}
+            </div>
           </>
 
           :
