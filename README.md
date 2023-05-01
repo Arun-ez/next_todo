@@ -1,7 +1,7 @@
 
 # NextTodo
 
-![Logo](https://www.iconsdb.com/icons/preview/white/infinity-xxl.png)
+![Logo](https://www.iconsdb.com/icons/preview/white/infinity-xl.png)
 
 A next.js powered Todo list website , where users able to list all the day to day tasks, with a nice interface.
 
