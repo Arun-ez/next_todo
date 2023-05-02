@@ -4,6 +4,7 @@ import { TodoItem } from '@/components/TodoItem';
 import { useRouter } from 'next/router';
 import { NoAuth } from '@/components/NoAuth';
 import { useSelector } from 'react-redux';
+import { Loading } from '@/components/Loading';
 
 const Home = () => {
 
@@ -79,14 +80,28 @@ const Home = () => {
         {token ?
 
           <>
-            <h1> Welcome to NextTodo </h1>
-            <p> See all your tasks  </p>
 
-            <div className={styles.container}>
-              {tasks.map((elm, id) => {
-                return <TodoItem data={elm} toggle_status={toggle_status} edit_todo={edit_todo} remove_todo={remove_todo} key={id} />
-              })}
-            </div>
+            {tasks.length ?
+
+              <>
+                <h1> Welcome to NextTodo </h1>
+                <p> See all your tasks  </p>
+
+                <div className={styles.container}>
+                  {tasks.map((elm, id) => {
+                    return <TodoItem data={elm} toggle_status={toggle_status} edit_todo={edit_todo} remove_todo={remove_todo} key={id} />
+                  })}
+                </div>
+              </>
+
+              :
+
+              <>
+                <Loading />
+              </>
+
+            }
+
           </>
 
           :
