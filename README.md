@@ -33,13 +33,13 @@ https://getnexttodo.vercel.app/
 
 
 
-
-
 ## Run Locally
 
-Clone the project
+run these commands on terminal
 
-```  git clone https://link-to-project   ```
+```  git clone https://github.com/Arun-ez/next_todo.git   ```
+
+```  npm i  ```
 
 ```  npm run dev  ```
 
