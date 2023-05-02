@@ -16,26 +16,26 @@
 }
 
 .bar1 {
-    background-color: #0078d7;
+    background-color: #3182CE;
 }
 
 .bar2 {
-    background-color: #00bcf2;
+    background-color: #4299E1;
     animation-delay: 0.125s;
 }
 
 .bar3 {
-    background-color: #86e3f3;
+    background-color: #63B3ED;
     animation-delay: 0.25s;
 }
 
 .bar4 {
-    background-color: #c7eafd;
+    background-color: #90CDF4;
     animation-delay: 0.375s;
 }
 
 .bar5 {
-    background-color: #ffffff;
+    background-color: #BEE3F8;
     animation-delay: 0.5s;
 }
 
