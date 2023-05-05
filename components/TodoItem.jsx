@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styles from "../styles/Todoitem.module.css"
 import { CiEdit } from "react-icons/ci"
 import { MdDeleteOutline } from "react-icons/md"
