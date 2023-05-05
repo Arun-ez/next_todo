@@ -13,7 +13,7 @@ const Loading = (dependency) => {
             if (!dependency.length) {
                 set_waiting_state(false);
             }
-        }, 3000)
+        }, 5000)
     }, [])
 
     return (
