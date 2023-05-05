@@ -64,3 +64,46 @@
         transform: translateY(-24px);
     }
 }
+
+.image {
+    margin-top: 80px;
+}
+
+.button {
+    color: white;
+    border: none;
+    padding: 20px;
+    width: 420px;
+    font-size: large;
+    font-weight: 500;
+    border-radius: 15px;
+    background-color: black;
+    transition: all 0.4s;
+    cursor: pointer;
+    letter-spacing: 1px;
+    margin-top: 50px;
+}
+
+.button:hover {
+    opacity: 90%;
+    letter-spacing: 3px;
+    transform: scale(1.05);
+}
+
+@media all and (min-width:0px) and (max-width:700px) {
+
+    .h1 {
+        font-size: 1.5em;
+    }
+
+    .image {
+        width: 250px;
+        height: 100px;
+
+    }
+
+    .button {
+        width: 80%;
+        font-size: medium;
+    }
+}

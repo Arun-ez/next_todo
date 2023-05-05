@@ -77,6 +77,10 @@ const Home = () => {
     <>
       <main className={styles.home}>
 
+        <h1> Welcome to NextTodo </h1>
+        <p> See all your tasks  </p>
+
+
         {token ?
 
           <>
@@ -84,9 +88,6 @@ const Home = () => {
             {tasks.length ?
 
               <>
-                <h1> Welcome to NextTodo </h1>
-                <p> See all your tasks  </p>
-
                 <div className={styles.container}>
                   {tasks.map((elm, id) => {
                     return <TodoItem data={elm} toggle_status={toggle_status} edit_todo={edit_todo} remove_todo={remove_todo} key={id} />
@@ -97,7 +98,7 @@ const Home = () => {
               :
 
               <>
-                <Loading />
+                <Loading dependency={tasks} />
               </>
 
             }

@@ -89,8 +89,6 @@ const TodoItem = ({ data, toggle_status, edit_todo, remove_todo }) => {
                 </>
             }
 
-
-
         </div>
     )
 }
