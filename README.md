@@ -13,7 +13,7 @@ https://getnexttodo.vercel.app/
 ![App Screenshot](https://arunshaw.vercel.app/static/media/nexttodo_4.7b7f4755dc70cbdfe96e.png)
 ## Tech Stack
 
-- HTML, CSS, JavaScript, NextJs, Redux
+- HTML, CSS, JavaScript, NextJs, Redux, MongoDB
 
 
 ## Features
@@ -47,7 +47,7 @@ run these commands on terminal
 
 ## Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+To run this project, you will need to add the following environment variables to your .env.local file
 
 `MONGO_URI`
 
