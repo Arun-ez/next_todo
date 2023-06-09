@@ -10,7 +10,8 @@ A next.js powered Todo list website , where users able to list all the day to da
 
 https://getnexttodo.vercel.app/
 
-![App Screenshot](https://arunshaw.vercel.app/static/media/nexttodo_2.7b7f4755dc70cbdfe96e.png)
+![App Screenshot](https://getnexttodo.vercel.app/thumbs/nexttodo_3.png)
+
 ## Tech Stack
 
 - HTML, CSS, JavaScript, NextJs, Redux, MongoDB
