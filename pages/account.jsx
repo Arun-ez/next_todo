@@ -4,8 +4,11 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { LOGIN, LOGOUT } from "@/redux/auth/types";
 import { useDispatch } from "react-redux";
+import { Spinner } from "@/components/Spinner";
 
 const Account = () => {
+
+    const [loading, set_loading] = useState(false);
 
     const dispatch = useDispatch();
     const [error, set_error] = useState("");
@@ -14,6 +17,9 @@ const Account = () => {
     })
 
     const post_userdata = async (data) => {
+
+        set_loading(true);
+
         try {
             let response = await fetch('/api/auth/login', {
                 method: "POST",
@@ -25,6 +31,8 @@ const Account = () => {
 
             let json = await response.json();
 
+            set_loading(false);
+
             if (json.hasOwnProperty('failed')) {
                 set_error(json.failed);
                 return;
@@ -35,6 +43,7 @@ const Account = () => {
             dispatch({ type: LOGIN, payload: json });
 
         } catch (error) {
+            set_loading(false);
             console.log(error);
         }
     }
@@ -57,6 +66,7 @@ const Account = () => {
         }
 
         set_error("");
+
         post_userdata(data);
     }
 
@@ -89,11 +99,18 @@ const Account = () => {
                         <input name="email" type="text" placeholder="Email" className={styles.input} />
                         <input name="password" type="text" placeholder="Password" className={styles.input} />
                         <small> {error} </small>
-                        <input type="submit" value="Login" className={styles.button} />
+
+                        <button disabled={loading} style={{ opacity: loading ? '80%' : '100%' }} className={styles.button} >
+                            {loading ? (
+                                <Spinner />
+                            ) : (
+                                <p> Login </p>
+                            )}
+
+                        </button>
                     </form>
 
                     <p> {"Don't have a account?"} <Link href="/register"> Create one </Link> </p>
-
                 </>
             }
 

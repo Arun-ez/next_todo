@@ -32,8 +32,8 @@
 .button {
     color: white;
     border: none;
-    padding: 20px;
     width: 420px;
+    height: 65px;
     font-size: large;
     font-weight: 500;
     border-radius: 15px;
@@ -44,9 +44,7 @@
 }
 
 .button:hover {
-    opacity: 90%;
     letter-spacing: 3px;
-    transform: scale(1.05);
 }
 
 .account a {
